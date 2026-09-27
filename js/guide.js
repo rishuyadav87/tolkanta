@@ -480,7 +480,7 @@
       '<button type="button" class="tk-g-voice" id="tkgVoice" aria-pressed="' + autoSpeak + '" title="Read answers aloud">' + TK.icon('speaker') + '</button>' +
       '<span class="tk-g-lang" role="group" aria-label="Language"><button type="button" data-l="hi">हिं</button><button type="button" data-l="en">EN</button></span>' +
       '<button type="button" class="tk-g-close" aria-label="Close assistant">' + TK.icon('x') + '</button></div><div class="tk-g-body"></div></div>' +
-      '<button type="button" class="tk-g-fab" aria-expanded="false" aria-label="Ask the TolKanta assistant">' + TK.icon('chat') + '<span>सवाल पूछें · Ask</span></button>' +
+      '<button type="button" class="tk-g-fab" aria-expanded="false" aria-label="Ask the TolKanta assistant">' + TK.icon('chat') + '<span><span class="tk-hi">सवाल पूछें</span><span class="tk-sep"> · </span><span class="tk-en">Ask</span></span></button>' +
       (store.get('tk_guide_seen') ? '' : '<div class="tk-g-bubble" id="tkgBubble">कोई सवाल? लिखकर या बोलकर पूछें। 🎤<br><small>Questions? Ask me by text or voice.</small></div>');
     document.body.appendChild(root);
     panel = root.querySelector('.tk-g-panel'); fab = root.querySelector('.tk-g-fab');

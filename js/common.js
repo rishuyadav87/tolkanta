@@ -56,7 +56,7 @@
     var v = t.nodeValue, i = v.indexOf(' · '); if (i < 1) return;
     var L = v.slice(0, i), R = v.slice(i + 3);
     var lDev = count(L, DEV), lLat = count(L, LAT), rDev = count(R, DEV), rLat = count(R, LAT);
-    var hiFirst = lDev >= 2 && lDev > lLat && rDev === 0 && rLat > 0, enFirst = lDev === 0 && lLat > 0 && rDev >= 2 && rDev > rLat;
+    var hiFirst = lDev >= 1 && rDev === 0 && rLat > 0, enFirst = lDev === 0 && lLat > 0 && rDev >= 1;
     if (!hiFirst && !enFirst) return;
     var f = document.createDocumentFragment(), mk = function (cls, txt) { var sp = document.createElement('span'); sp.className = cls; sp.textContent = txt; f.appendChild(sp); };
     mk(hiFirst ? 'tk-hi' : 'tk-en', L); mk('tk-sep', ' · '); mk(hiFirst ? 'tk-en' : 'tk-hi', R);
@@ -70,7 +70,7 @@
     while (w.nextNode()) list.push(w.currentNode);
     list.forEach(splitNode);
   }
-  function skip(el) { return !el || !el.closest || !!el.closest('script,style,textarea,input,option,select,#tkGuide,.tk-hi,.tk-en,[data-nosplit],title'); }
+  function skip(el) { return !el || !el.closest || !!el.closest('script,style,textarea,input,option,select,.tk-hi,.tk-en,[data-nosplit],title'); }
   TK.splitLang = splitIn;
   if (document.body) {
     splitIn(document.body);
@@ -307,7 +307,7 @@
   var script = document.currentScript;
   TK.root = (script && script.getAttribute('data-root')) || '';
   var brand = function (dark) {
-    return '<a class="brand" href="' + TK.root + 'index.html"><span class="brand-mark">' + TK.icon('scale') + '</span><span class="brand-name">TolKanta<small>' + (dark ? 'तोलकांटा' : 'Team Tenet · SIH 2026') + '</small></span></a>';
+    return '<a class="brand" href="' + TK.root + 'index.html"><span class="brand-mark">' + TK.icon('scale') + '</span><span class="brand-name">TolKanta<small>' + (dark ? '<span class="tk-hi">तोलकांटा</span>' : 'Team Tenet · SIH 2026') + '</small></span></a>';
   };
   var NAV = [['how-it-works.html', 'यह कैसे काम करता है · How it works'], ['impact.html', 'प्रभाव · Impact'], ['verify.html', 'सत्यापन करें · Verify'], ['guide.html', 'मदद · Help']];
   var MORE = [['ivr.html', 'IVR हेल्पलाइन डेमो · IVR helpline demo'], ['whatsapp.html', 'WhatsApp बॉट डेमो · WhatsApp bot demo'], ['architecture.html', 'आर्किटेक्चर · Architecture'], ['privacy.html', 'गोपनीयता · Privacy'], ['about.html', 'टीम के बारे में · About the team'], ['index.html', 'होम · Home']];
