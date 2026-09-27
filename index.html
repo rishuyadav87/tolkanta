@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('tk_theme');
+        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch(e) {}
+    })();
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TolKanta · Fair prices for India's e-waste</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0b2b26">
+  <meta name="description" content="TolKanta connects waste pickers and kabadiwalas to CPCB-authorised recyclers with fair prices and tamper-evident handover records. Team Tenet, SIH 2026.">
+  <meta name="theme-color" content="#0B3D3A">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Mukta:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <div>
+          <span class="eyebrow" style="color:var(--saffron)">स्मार्ट इंडिया हैकथॉन 2026 · Smart India Hackathon 2026 - Team Tenet</span>
+          <h1>Fair weight, fair price for India's e-waste. · सही तौल, सही दाम</h1>
+          <p class="lead">कबाड़ीवालों और CPCB-अधिकृत रिसाइकलरों को जोड़ने वाला डायरेक्ट प्लेटफॉर्म। सही दाम, पक्का वज़न, और 100% CPCB EPR अनुपालन। · The direct platform connecting kabadiwalas to CPCB-authorised recyclers. Fair prices, verified weight, and 100% CPCB EPR compliance.</p>
+          <div class="hero-actions">
+            <a class="btn btn-orange" href="login.html?as=seller" id="ctaSell"></a>
+            <a class="btn btn-light" href="how-it-works.html">यह कैसे काम करता है देखें · See how it works</a>
+          </div>
+          <p class="small" style="color:rgba(255,255,255,.6);margin-top:18px">कोई ऐप इंस्टॉल करने की ज़रूरत नहीं है। यह किसी भी ब्राउज़र में काम करता है, और बिना स्मार्टफोन वाले कचरा बीनने वाले IVR लाइन पर कॉल कर सकते हैं। · No app to install. It works in any browser, and pickers without a smartphone can call the IVR line.</p>
+        </div>
+        <div class="hero-panel">
+          <div class="row between" style="margin-bottom:12px">
+            <h3 style="margin:0">आज के दाम · Today's rates</h3>
+            <span id="listenRates"></span>
+          </div>
+          <div class="price-board">
+            <div class="pb-head"><span>तोलकांटा दाम बोर्ड · TolKanta price board</span><span class="mono small" id="pbDate"></span></div>
+            <table id="priceBoard"><tbody></tbody></table>
+          </div>
+          <p class="tiny" style="color:rgba(255,255,255,.6);margin:10px 0 0">दाम बोर्ड सत्यापित रिसाइकलर बोलियों से नियमों-आधारित मूल्य इंजन द्वारा सेट किए जाते हैं। यही दाम IVR लाइन, व्हाट्सएप बॉट और कबाड़ बाज़ारों के प्रिंटेड बोर्डों पर पहुँचते हैं। · Board rates are set by the rules-based price engine from verified recycler bids. The same rates reach the IVR line, the WhatsApp bot and printed boards at scrap markets.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem stats -->
+    <section class="band">
+      <div class="container section tight">
+        <div class="grid g4">
+          <div><div class="stat" style="color:var(--green);white-space:nowrap">14.1 <span style="font-size:.62em">लाख टन · lakh tons</span></div><div class="stat-label">भारत में उत्पन्न ई-कचरा, FY 2025-26 (CPCB) · e-waste generated in India, FY 2025-26 (CPCB)</div></div>
+          <div><div class="stat" style="color:var(--orange)">85–95%</div><div class="stat-label">अनौपचारिक रूप से एकत्रित और तोड़ा गया (स्वतंत्र अनुमान) · collected and dismantled informally (independent estimates)</div></div>
+          <div><div class="stat" style="color:var(--navy)">320+</div><div class="stat-label">पंजीकृत रिसाइकलर: क्षमता मौजूद है, लेकिन कलेक्शन कम है · registered recyclers: the capacity exists, collection is the gap</div></div>
+          <div><div class="stat">₹0</div><div class="stat-label">कचरा बीनने वालों और कबाड़ीवालों के लिए शून्य शुल्क, हमेशा · fees for pickers and kabadiwalas, always</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Channels -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">एक प्राइस इंजन · चार चैनल · One price engine · four channels</span>
+          <h2>हर स्तर के लिए वही चैनल जो वो पहले से इस्तेमाल करते हैं · Meet every tier where it already works</h2>
+          <p class="lead">कबाड़ीवालों और CPCB-अधिकृत रिसाइकलरों को जोड़ने वाला डायरेक्ट प्लेटफॉर्म। सही दाम, पक्का वज़न, और 100% CPCB EPR अनुपालन। · The direct platform connecting kabadiwalas to CPCB-authorised recyclers. Fair prices, verified weight, and 100% CPCB EPR compliance.</p>
+        </div>
+        <div class="grid g4">
+          <a class="card" href="ivr.html" style="color:inherit;text-decoration:none">
+            <div class="card-icon" style="background:#f4f4f4;color:var(--ink)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div><h3>कचरा बीनने वाले · Waste pickers</h3>
+            <p class="muted small">एक टोल-फ्री IVR लाइन और कबाड़ बाज़ारों में प्रिंटेड दाम बोर्ड। वह अपनी भाषा में आज के दाम सुनती है, किसी फोन डेटा की ज़रूरत नहीं। · A toll-free IVR line and printed price boards at scrap markets. She hears today's rate in her language, with no phone data needed.</p>
+            <span class="small" style="color:var(--green);font-weight:700">IVR डेमो आज़माएं → · Try the IVR demo →</span>
+          </a>
+          <a class="card" href="login.html?as=seller" style="color:inherit;text-decoration:none">
+            <div class="card-icon orange"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg></div><h3>कबाड़ीवाले · Kabadiwalas</h3>
+            <p class="muted small">लॉट की फोटो लें, श्रेणी की पुष्टि करें, अपने कांटे पर तौलें, सबसे अच्छी अधिकृत बोली देखें, पिकअप बुक करें और नकद भुगतान प्राप्त करें। · Photograph the lot, confirm the category, weigh it on his own kanta, see the best authorised bid, book a pickup and get paid in cash.</p>
+            <span class="small" style="color:var(--green);font-weight:700">विक्रेता लॉगिन → · Seller login →</span>
+          </a>
+          <a class="card" href="login.html?as=buyer" style="color:inherit;text-decoration:none">
+            <div class="card-icon navy"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></div><h3>खरीदार (अधिकृत रिसाइकलर) · Buyers (authorised recyclers)</h3>
+            <p class="muted small">नए कबाड़ और बुकिंग की तुरंत सूचनाएं, SHA-256 हैंडओवर रिकॉर्ड के साथ सत्यापित जियो-टैग किए गए लॉट, वज़न की पुष्टि, खरीदे गए किलो की ट्रैकिंग और EPR-रेडी एक्सपोर्ट। · Instant notifications of new scrap and bookings, verified geo-tagged lots with a SHA-256 handover record, weight confirmation, kg-bought tracking and EPR-ready exports.</p>
+            <span class="small" style="color:var(--green);font-weight:700">खरीदार लॉगिन → · Buyer login →</span>
+          </a>
+          <a class="card" href="login.html?as=admin" style="color:inherit;text-decoration:none">
+            <div class="card-icon red"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div><h3>ULB और NGO · ULBs & NGOs</h3>
+            <p class="muted small">अनौपचारिक श्रमिकों की वार्ड-वार रजिस्ट्री, डायवर्ट किए गए टन, विवाद समाधान और मूल्य इंजन, सब एक कंट्रोल रूम में। · A ward-wise registry of informal workers, tonnes diverted, dispute resolution and the price engine, all in one control room.</p>
+            <span class="small" style="color:var(--green);font-weight:700">कंट्रोल रूम खोलें → · Open the control room →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section band cream">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">यह कैसे काम करता है · How it works</span>
+          <h2>कबाड़ का एक लॉट, शुरू से अंत तक · One lot of scrap, end to end</h2>
+        </div>
+        <div class="steps">
+          <div class="step"><h3>फोटो लें · Capture</h3><p>कबाड़ की फोटो लें। ऑन-डिवाइस AI मॉडल श्रेणी का सुझाव देता है, और कबाड़ीवाला हमेशा पुष्टि करता है। · Photo of the lot. An on-device AI model suggests the category, and the kabadiwala always confirms.</p></div>
+          <div class="step"><h3>दाम · Value</h3><p>उसके अपने कांटे से वज़न एक तुरंत दाम देता है: स्थानीय दर के आगे सबसे अच्छी अधिकृत बोली। · Weight from his own kanta gives an instant price: the best authorised bid next to the local rate.</p></div>
+          <div class="step"><h3>मिलान · Match</h3><p>केवल CPCB-अधिकृत रिसाइकलर, जो लाइव मैप पर दर, दूरी और पिकअप स्लॉट के अनुसार रैंक किए गए हैं। · Only CPCB-authorised recyclers, ranked by rate, distance and pickup slot on a live map.</p></div>
+          <div class="step"><h3>सत्यापन · Verify</h3><p>फोटो, GPS, समय और वज़न को SHA-256 के साथ हैश और चेन किया जाता है। रिसाइकलर इसकी पुष्टि करता है। · Photo, GPS, time and weight are hashed with SHA-256 and chained. The recycler counter-confirms.</p></div>
+          <div class="step"><h3>रिकॉर्ड · Record</h3><p>यह बिक्री उसके खाते में दर्ज होती है, रिकॉर्ड EPR-रेडी बन जाता है, और वार्ड का डेटा अपडेट हो जाता है। · The sale lands in his ledger, the record becomes EPR-ready, and the ward's data updates.</p></div>
+        </div>
+        <p style="margin-top:24px"><a class="btn btn-ghost" href="how-it-works.html">पूरी प्रक्रिया पढ़ें → · Read the full walkthrough →</a></p>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">TolKanta क्यों · Why TolKanta</span>
+          <h2>कबाड़ी लेन के लिए बनाया गया, रिसाइकलर द्वारा भरोसेमंद · Built for the kabadi lane, trusted by the recycler</h2>
+        </div>
+        <div class="grid g3">
+          <div class="card flat"><div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div><h3>छेड़छाड़-मुक्त हैंडओवर · Tamper-evident handover</h3><p class="muted small">हर हैंडओवर एक SHA-256 हैश रिकॉर्ड है जो पिछले से जुड़ा है। किसी भी रिकॉर्ड को बदलने से चेन टूट जाती है, और कोई भी इसे सत्यापन पृष्ठ पर जाँच सकता है। · Every handover is a SHA-256 record linked to the one before it. Editing any record breaks the chain, and anyone can check a record on the verify page.</p></div>
+          <div class="card flat"><div class="card-icon orange"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></div><h3>कमाई पासपोर्ट · Earnings Passport</h3><p class="muted small">सत्यापित बिक्री एक QR कोड के साथ एक ट्रस्ट स्कोर बनाती है जिसे बैंक स्कैन कर सकता है। कई कबाड़ीवालों के लिए यह उनकी आय का पहला प्रमाण है। · Verified sales build a trust score with a QR code that a bank or MFI can scan. For many kabadiwalas it is their first proof of income.</p></div>
+          <div class="card flat"><div class="card-icon red"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></div><h3>खतरा सुरक्षा · Hazard safety</h3><p class="muted small">CRT ग्लास, लिथियम बैटरी और सर्किट बोर्ड पिकअप से पहले ऑडियो और चित्र सुरक्षा कदम चालू करते हैं। अब तांबे के लिए बोर्ड जलाना नहीं होगा। · CRT glass, lithium batteries and circuit boards trigger audio and picture safety steps before pickup. No more burning boards for copper.</p></div>
+          <div class="card flat"><div class="card-icon navy"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg></div><h3>वॉयस-फर्स्ट, हिंदी-फर्स्ट · Voice-first, Hindi-first</h3><p class="muted small">हर पेज पर एक 'सुनें' बटन है जो उसे पढ़कर सुनाता है। कबाड़ीवाले टाइप करने के बजाय वज़न बोल सकते हैं। · Every page has a सुनें button that reads it aloud. Kabadiwalas can speak the weight instead of typing it.</p></div>
+          <div class="card flat"><div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div><h3>बाय-डिफ़ॉल्ट नकद · Cash by default</h3><p class="muted small">नकद हमेशा डिफ़ॉल्ट भुगतान है, साथ ही UPI और AePS वैकल्पिक हैं। खाता हर रुपये को दर्ज करता है। · Cash is always the default payment, with UPI and AePS optional. The ledger records every rupee either way.</p></div>
+          <div class="card flat"><div class="card-icon navy"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div><h3>डिज़ाइन से निजी · Private by design</h3><p class="muted small">DPDP अधिनियम 2023 के तहत सहमति-प्रथम ऑनबोर्डिंग, वैकल्पिक ई-श्रम लिंक, और किसी भी सार्वजनिक पृष्ठ पर कोई व्यक्तिगत विवरण नहीं। · Consent-first onboarding under the DPDP Act 2023, optional e-Shram link, and no personal details on any public page.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live impact -->
+    <section class="section band dark">
+      <div class="container">
+        <div class="row between" style="align-items:flex-end;margin-bottom:28px">
+          <div><span class="eyebrow" style="color:var(--saffron)">डेमो डेटा से लाइव · Live from the demo data</span><h2 style="color:#fff;margin:0">अब तक का प्रभाव · Impact so far</h2></div>
+          <a class="btn btn-light" href="impact.html">प्रभाव डैशबोर्ड खोलें → · Open the impact dashboard →</a>
+        </div>
+        <div class="grid g4" id="liveStats"></div>
+      </div>
+    </section>
+
+    <!-- SDG -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">सतत विकास लक्ष्य · Sustainable Development Goals</span><h2>इससे क्या बदलाव आता है · What it moves the needle on</h2></div>
+        <div class="grid g4">
+          <div class="sdg"><b style="background:#4C9F38">3.9</b><span><strong>अच्छा स्वास्थ्य · Good health</strong><br><span class="muted small">सीसा, बैटरी की आग और PCB के धुएं से कम बीमारियां · Fewer illnesses from lead, battery fires and PCB fumes</span></span></div>
+          <div class="sdg"><b style="background:#A21942">8.8</b><span><strong>सम्मानजनक काम · Decent work</strong><br><span class="muted small">सुरक्षित, रिकॉर्ड किया गया, उचित भुगतान वाला काम · Safe, recorded, fairly paid informal work</span></span></div>
+          <div class="sdg"><b style="background:#FD9D24">11.6</b><span><strong>सतत शहर · Sustainable cities</strong><br><span class="muted small">शहर की अपशिष्ट योजनाओं के लिए वार्ड-स्तरीय डेटा · Ward-level data for city waste plans</span></span></div>
+          <div class="sdg"><b style="background:#BF8B2E">12.5</b><span><strong>ज़िम्मेदार खपत · Responsible consumption</strong><br><span class="muted small">ज़्यादा ई-कचरा अधिकृत रीसाइक्लिंग तक पहुँचता है · More e-waste reaches authorised recycling</span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="band cream">
+      <div class="container section tight">
+        <div class="grid g2" style="align-items:center">
+          <div>
+            <h2>वर्किंग डेमो आज़माएं · Try the working demo</h2>
+            <p class="lead">कबाड़ीवालों और CPCB-अधिकृत रिसाइकलरों को जोड़ने वाला डायरेक्ट प्लेटफॉर्म। सही दाम, पक्का वज़न, और 100% CPCB EPR अनुपालन। · The direct platform connecting kabadiwalas to CPCB-authorised recyclers. Fair prices, verified weight, and 100% CPCB EPR compliance.</p>
+          </div>
+          <div class="grid g3">
+            <a class="card center" href="login.html?as=seller" style="text-decoration:none;color:inherit"><div class="hi" style="font-size:20px;font-weight:700">विक्रेता · Seller</div><div class="muted small">कबाड़ीवाला · Kabadiwala<br><span class="mono">9000000001</span></div></a>
+            <a class="card center" href="login.html?as=buyer" style="text-decoration:none;color:inherit"><div class="hi" style="font-size:20px;font-weight:700">खरीदार · Buyer</div><div class="muted small">रिसाइकलर · Recycler<br><span class="mono">9000000002</span></div></a>
+            <a class="card center" href="login.html?as=admin" style="text-decoration:none;color:inherit"><div class="hi" style="font-size:20px;font-weight:700">अधिकारी · ULB / Admin</div><div class="muted small">कंट्रोल रूम · Control room<br><span class="mono">9000000003</span></div></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/sha256.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/common.js" data-root=""></script>
+  <script src="js/guide.js"></script>
+  <script src="js/pages/home.js"></script>
+</body>
+</html>
+

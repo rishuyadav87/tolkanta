@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('tk_theme');
+        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch(e) {}
+    })();
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Verify a record · TolKanta</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0b2b26">
+  <meta name="description" content="Check a TolKanta handover record by its SHA-256 hash.">
+  <meta name="theme-color" content="#0B3D3A">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Mukta:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="main">
+    <section class="page-head"><div class="container">
+      <span class="eyebrow" style="color:var(--saffron)">Public record check</span>
+      <h1>हैंडओवर रिकॉर्ड जाँचें · Verify a handover</h1>
+      <p>For EPR auditors, brands and city officials. Paste the SHA-256 hash from an EPR export or a kabadiwala's receipt. We recompute it and check that it links to the record before it.</p>
+    </div></section>
+    <section class="section"><div class="container" style="max-width:900px">
+      <form id="vf" class="row" style="flex-wrap:nowrap">
+        <input class="input mono" id="hash" placeholder="64-character SHA-256 hash" style="font-size:14px" aria-label="Record hash">
+        <button class="btn btn-primary" type="submit">Verify</button>
+      </form>
+      <p class="small muted" style="margin-top:8px">Try it: <a href="#" id="sample">use the latest record in this demo</a></p>
+      <div id="result" style="margin-top:20px"></div>
+    </div></section>
+  </main>
+  <script src="js/sha256.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/common.js" data-root=""></script>
+  <script src="js/guide.js"></script>
+  <script src="js/pages/verify.js"></script>
+</body>
+</html>

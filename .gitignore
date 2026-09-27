@@ -1,0 +1,12 @@
+.env
+.env.*
+node_modules/
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+update-*.js
+apply-*.js
+add-*.js
+update*.js
+*.tmp

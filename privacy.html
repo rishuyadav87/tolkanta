@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('tk_theme');
+        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch(e) {}
+    })();
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy · TolKanta</title>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#0b2b26">
+  <meta name="description" content="Privacy Policy and Data Rights (DPDP Act 2023) for TolKanta.">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Mukta:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="main">
+    <section class="page-head"><div class="container">
+      <span class="eyebrow" style="color:var(--saffron)">Privacy</span>
+      <h1>डेटा सुरक्षा और गोपनीयता · Privacy Policy (DPDP Act 2023)</h1>
+      <p>We respect your privacy and process data under the Digital Personal Data Protection Act 2023. · हम आपकी निजता का सम्मान करते हैं और डेटा संरक्षण अधिनियम 2023 के तहत डेटा का उपयोग करते हैं।</p>
+    </div></section>
+    <section class="section"><div class="container">
+      <div class="card stack">
+        <div>
+          <h2>हम क्या जानकारी लेते हैं? · What data we collect</h2>
+          <p>Name, phone number, location (GPS), photos of scrap, transaction records, and optionally e-Shram UAN.<br>नाम, फोन नंबर, स्थान (जीपीएस), कबाड़ की फोटो, लेन-देन का रिकॉर्ड, और ऐच्छिक रूप से ई-श्रम नंबर।</p>
+        </div>
+        <div>
+          <h2>हम इसका क्या करते हैं? · How we use it</h2>
+          <p>We use this data to calculate fair prices, create tamper-evident sale records, generate your Trust Score, and for EPR (Extended Producer Responsibility) reporting.<br>हम इस डेटा का उपयोग उचित मूल्य तय करने, सुरक्षित बिक्री रिकॉर्ड बनाने, आपका ट्रस्ट स्कोर बनाने और EPR रिपोर्टिंग के लिए करते हैं।</p>
+        </div>
+        <div>
+          <h2>डेटा कितने समय तक रखा जाता है? · Data retention</h2>
+          <p>Transaction records are kept permanently for audit purposes, but without your phone number. Your account data is retained as long as your account is active.<br>लेन-देन का रिकॉर्ड ऑडिट के लिए हमेशा रखा जाता है (बिना फोन नंबर के)। आपके खाते का डेटा तब तक रखा जाता है जब तक खाता सक्रिय है।</p>
+        </div>
+        <div>
+          <h2>आपके अधिकार (DPDP Act 2023) · Your rights</h2>
+          <p>You have the right to download your data and delete your account from your Profile page.<br>आपको अपनी प्रोफाइल से अपना डेटा डाउनलोड करने और खाता हटाने का अधिकार है।</p>
+        </div>
+        <div>
+          <h2>संपर्क करें · Contact us</h2>
+          <p>For data privacy queries, please contact the ULB nodal officer. · डेटा गोपनीयता से संबंधित प्रश्नों के लिए ULB नोडल अधिकारी से संपर्क करें।</p>
+        </div>
+      </div>
+    </div></section>
+  </main>
+  <script src="js/sha256.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/common.js" data-root=""></script>
+  <script src="js/pages/privacy.js"></script>
+</body>
+</html>

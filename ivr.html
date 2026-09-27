@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('tk_theme');
+        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch(e) {}
+    })();
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IVR helpline demo · TolKanta</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0b2b26">
+  <meta name="description" content="Simulator of the TolKanta IVR line for waste pickers with feature phones.">
+  <meta name="theme-color" content="#0B3D3A">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Mukta:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="main">
+    <section class="page-head"><div class="container">
+      <span class="eyebrow" style="color:var(--saffron)">Channel 1 · Waste pickers</span>
+      <h1>IVR हेल्पलाइन · IVR helpline demo</h1>
+      <p>For pickers with feature phones: call the toll-free number, press a digit and hear today's rate in Hindi. No app and no data plan needed. Rates here are live from the price engine.</p>
+    </div></section>
+    <section class="section"><div class="container">
+      <div class="grid g2" style="align-items:start">
+        <div class="phone-sim">
+          <div class="lcd"><div class="row between tiny"><span>TolKanta</span><span id="callState">तैयार · ready</span></div>
+            <div style="font-size:17px;font-weight:600;margin:4px 0">1800-XXX-XXXX</div><div id="lcdLog" class="tiny" style="line-height:1.45"></div></div>
+          <div class="keypad" id="keypad"></div>
+          <div class="call-btns"><button id="call" style="background:var(--green)" aria-label="Call"></button><button id="hang" style="background:var(--red)" aria-label="Hang up"></button></div>
+        </div>
+        <div class="card"><h3>Menu</h3><p class="muted small">Press the green button to call, then a digit.</p><table class="table" id="menu"><tbody></tbody></table>
+          <p class="tiny muted" style="margin-top:12px">In production this runs on an Indian CPaaS (e.g. Exotel) with recorded prompts in Hindi and regional languages. Calls are logged by material and area, never by the caller's identity.</p></div>
+      </div>
+    </div></section>
+  </main>
+  <script src="js/sha256.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/common.js" data-root=""></script>
+  <script src="js/guide.js"></script>
+  <script src="js/pages/ivr.js"></script>
+</body>
+</html>

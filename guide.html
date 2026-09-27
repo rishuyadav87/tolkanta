@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('tk_theme');
+        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch(e) {}
+    })();
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Site guide · TolKanta</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0b2b26">
+  <meta name="description" content="How to use the TolKanta website, page by page, in Hindi and English text and audio.">
+  <meta name="theme-color" content="#0B3D3A">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Mukta:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="main">
+    <section class="page-head"><div class="container">
+      <span class="eyebrow" style="color:var(--saffron)">मदद · Help centre</span>
+      <h1>कोई भी सवाल पूछें · Ask TolKanta anything</h1>
+      <p>हमारा सहायक चैटबॉट हर पेज पर है (नीचे दाएँ नारंगी बटन)। लिखकर या बोलकर पूछें, जवाब लिखा भी मिलेगा और सुनाई भी देगा। Our assistant chatbot is on every page (orange button, bottom right). Ask by text or voice; answers come as text and audio, in Hindi or English.</p>
+      <form id="guideSearch" class="row" style="margin-top:18px;max-width:620px;gap:8px;flex-wrap:nowrap">
+        <input id="gq" class="input" style="flex:1;min-width:0" placeholder="सवाल लिखें: पैसा कब मिलेगा? · Ask: when do I get paid?" autocomplete="off" aria-label="Ask a question">
+        <button type="button" id="gMic" class="tk-g-mic" style="width:48px;height:48px;background:rgba(255,255,255,.15);color:#fff" aria-label="Speak">🎤</button>
+        <button class="btn btn-orange">पूछें · Ask</button>
+      </form>
+      <div class="row" style="margin-top:12px;gap:8px"><button type="button" class="btn btn-light btn-sm" data-ask="आज के दाम क्या हैं?">आज के दाम क्या हैं?</button><button type="button" class="btn btn-light btn-sm" data-ask="कबाड़ कैसे बेचूँ?">कबाड़ कैसे बेचूँ?</button><button type="button" class="btn btn-light btn-sm" data-ask="पैसा कब मिलेगा?">पैसा कब मिलेगा?</button><button type="button" class="btn btn-light btn-sm" data-ask="Is my data safe?">Is my data safe?</button><button type="button" class="btn btn-light btn-sm" data-ask="What is the Earnings Passport?">What is the Earnings Passport?</button></div>
+    </div></section>
+
+    <section class="section" style="padding-bottom:24px"><div class="container">
+      <div class="grid g3" id="quickStart"></div>
+    </div></section>
+
+    <section class="section" style="padding-top:24px"><div class="container">
+      <div class="row between" style="align-items:flex-end;margin-bottom:6px">
+        <div><h2 style="margin:0">हर पेज · Every page</h2><p class="muted" style="margin:4px 0 0">Press a speaker to listen. “Open with tour” opens the page and walks you through it, step by step.</p></div>
+        <div class="tk-g-lang" id="gLang" role="group" aria-label="Language" style="background:var(--deep)"><button type="button" data-l="hi">हिंदी</button><button type="button" data-l="en">English</button></div>
+      </div>
+      <div id="guideList"></div>
+    </div></section>
+
+    <section class="section band cream"><div class="container">
+      <div class="grid g2" style="align-items:start">
+        <div><h2>बोलकर चलाएँ · Go anywhere by voice</h2><p class="muted">Open the assistant, tap 🎤 and say “… खोलो” / “open …” with one of these words. Voice works in Chrome and Edge; typing works everywhere.</p>
+          <div class="card table-wrap"><table class="table" id="cmdTable"></table></div></div>
+        <div><h2>कीबोर्ड · Keyboard</h2>
+          <div class="card"><table class="table"><tbody>
+            <tr><td class="mono"><b>?</b></td><td>गाइड खोलें · Open the guide on any page</td></tr>
+            <tr><td class="mono"><b>Esc</b></td><td>गाइड बंद करें · Close the guide or tour</td></tr>
+            <tr><td class="mono"><b>Tab</b></td><td>अगला बटन · Move to the next button or field</td></tr>
+          </tbody></table></div>
+          <h2 style="margin-top:24px">डेमो खाते · Demo accounts</h2>
+          <div class="card small"><p style="margin-top:0">OTP is always <b class="mono">123456</b>.</p>
+            <table class="table"><tbody>
+              <tr><td class="mono">9000000001</td><td>Seller · Ramesh (kabadiwala)</td></tr>
+              <tr><td class="mono">9000000004</td><td>Seller · Salma (kabadiwala)</td></tr>
+              <tr><td class="mono">9000000002</td><td>Buyer · Harit E-Recyclers</td></tr>
+              <tr><td class="mono">9000000005</td><td>Buyer · Circuit Recovery Works</td></tr>
+              <tr><td class="mono">9000000006</td><td>Buyer · Metro E-Waste Processors</td></tr>
+              <tr><td class="mono">9000000003</td><td>ULB officer / admin</td></tr>
+            </tbody></table></div>
+        </div>
+      </div>
+    </div></section>
+  </main>
+  <script src="js/sha256.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/common.js" data-root=""></script>
+  <script src="js/guide.js"></script>
+  <script src="js/pages/guide-page.js"></script>
+</body>
+</html>

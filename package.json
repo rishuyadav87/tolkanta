@@ -1,0 +1,7 @@
+{
+  "name": "tolkanta-website",
+  "private": true,
+  "description": "TolKanta (Team Tenet, SIH 2026): static website + one serverless AI chat function",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=18" }
+}

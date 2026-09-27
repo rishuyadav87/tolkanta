@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" data-ui="en">
+<head>
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('tk_theme');
+        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch(e) {}
+    })();
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Architecture · TolKanta</title>
+  <link rel="icon" href="assets/img/favicon.svg">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#0b2b26">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="main">
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">तकनीकी आर्किटेक्चर · Technical Architecture</span>
+          <h2>प्रोटोटाइप से प्रोडक्शन तक · From prototype to production</h2>
+          <p class="lead">TolKanta एक ऑफलाइन-फर्स्ट PWA के रूप में बनाया गया है जो बिना इंटरनेट कनेक्शन के भी काम करता है। यहाँ हमारा प्रोडक्शन माइग्रेशन प्लान है। · TolKanta is built as an offline-first PWA that works without internet. Here is our production migration plan.</p>
+        </div>
+
+        <!-- Current Prototype -->
+        <div class="card" style="margin-top:24px">
+          <h3>🧪 वर्तमान प्रोटोटाइप (हैकथॉन) · Current Prototype (Hackathon)</h3>
+          <div class="grid g3" style="margin-top:16px">
+            <div>
+              <h4>फ्रंटएंड · Frontend</h4>
+              <ul class="small">
+                <li>ज़ीरो-डिपेंडेंसी वनीला JS · Zero-dependency Vanilla JS</li>
+                <li>PWA + सर्विस वर्कर · PWA + Service Worker (offline-first)</li>
+                <li>TensorFlow.js MobileNet (ब्राउज़र में AI · in-browser AI)</li>
+                <li>Web Speech API (हिंदी वॉइस I/O · Hindi voice I/O)</li>
+                <li>Leaflet.js + OpenStreetMap (मैप · maps)</li>
+              </ul>
+            </div>
+            <div>
+              <h4>बैकएंड · Backend</h4>
+              <ul class="small">
+                <li>Node.js स्टैटिक सर्वर · Node.js static server</li>
+                <li>Google Gemini AI असिस्टेंट · Google Gemini AI assistant</li>
+                <li>localStorage (tolkanta_db_v3) - ब्राउज़र डेटाबेस · browser database</li>
+                <li>Inter-tab sync (storage events)</li>
+              </ul>
+            </div>
+            <div>
+              <h4>सुरक्षा · Security</h4>
+              <ul class="small">
+                <li>SHA-256 हैश चेन (छेड़छाड़-मुक्त) · SHA-256 hash chain (tamper-evident)</li>
+                <li>क्रिप्टो.getRandomValues सेशन टोकन · Crypto session tokens</li>
+                <li>EXIF सत्यापन + पर्सेप्चुअल हैश · EXIF verification + perceptual hash</li>
+                <li>DPDP Act 2023 सहमति प्रबंधन · DPDP consent management</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Production Architecture -->
+        <div class="card" style="margin-top:24px;border:2px solid var(--green)">
+          <h3>🚀 प्रोडक्शन आर्किटेक्चर · Production Architecture</h3>
+          <p class="small muted">हमारा हर db.js API मेथड 1:1 Node.js/PostgreSQL रिपोजिटरी से मैप करता है। · Every db.js API method maps 1:1 to a Node.js/PostgreSQL repository.</p>
+          <div class="grid g2" style="margin-top:16px;gap:24px">
+            <div>
+              <h4>📱 मल्टी-चैनल एक्सेस लेयर · Multi-Channel Access Layer</h4>
+              <table class="table small">
+                <thead><tr><th>चैनल · Channel</th><th>प्रोटोटाइप · Prototype</th><th>प्रोडक्शन · Production</th></tr></thead>
+                <tbody>
+                  <tr><td>वेब · Web</td><td>PWA (ऑफलाइन · offline)</td><td>PWA + CDN (CloudFlare)</td></tr>
+                  <tr><td>IVR</td><td>वेब सिम्युलेटर · Web simulator</td><td>Exotel / Knowlarity + AI4Bharat</td></tr>
+                  <tr><td>WhatsApp</td><td>वेब सिम्युलेटर · Web simulator</td><td>WhatsApp Business API (Twilio)</td></tr>
+                  <tr><td>SMS</td><td>हार्डकोडेड OTP · Hardcoded OTP</td><td>MSG91 / Twilio SMS gateway</td></tr>
+                </tbody>
+              </table>
+
+              <h4 style="margin-top:20px">🗄️ डेटा लेयर · Data Layer</h4>
+              <table class="table small">
+                <thead><tr><th>कॉम्पोनेंट · Component</th><th>प्रोटोटाइप · Prototype</th><th>प्रोडक्शन · Production</th></tr></thead>
+                <tbody>
+                  <tr><td>डेटाबेस · Database</td><td>localStorage JSON</td><td>PostgreSQL (ACID) + Redis cache</td></tr>
+                  <tr><td>इमेज स्टोरेज · Image storage</td><td>Base64 in localStorage</td><td>MinIO / S3 object storage</td></tr>
+                  <tr><td>सेशन · Sessions</td><td>sessionStorage tokens</td><td>JWT + Redis + HTTP-only cookies</td></tr>
+                  <tr><td>रियल-टाइम · Real-time</td><td>storage event (inter-tab)</td><td>WebSocket (Socket.io) + Redis Pub/Sub</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div>
+              <h4>🔐 सुरक्षा और अनुपालन · Security & Compliance</h4>
+              <table class="table small">
+                <thead><tr><th>तत्व · Element</th><th>प्रोटोटाइप · Prototype</th><th>प्रोडक्शन · Production</th></tr></thead>
+                <tbody>
+                  <tr><td>प्रमाणीकरण · Auth</td><td>Demo OTP (123456)</td><td>Aadhaar OTP / e-Shram API + 2FA</td></tr>
+                  <tr><td>हैश चेन · Hash chain</td><td>क्लाइंट-साइड SHA-256 · Client SHA-256</td><td>HSM/HMAC-SHA256 + Ed25519 signing</td></tr>
+                  <tr><td>एंकरिंग · Anchoring</td><td>लोकल चेन · Local chain</td><td>दैनिक Merkle root → Polygon / NIC · Daily Merkle root → Polygon / NIC</td></tr>
+                  <tr><td>AI/ML</td><td>MobileNet (ब्राउज़र · browser)</td><td>YOLOv8 (CPCB Schedule-I trained)</td></tr>
+                </tbody>
+              </table>
+
+              <h4 style="margin-top:20px">📊 स्केलेबिलिटी · Scalability</h4>
+              <ul class="small">
+                <li><b>इंफ्रा · Infra:</b> Kubernetes (GKE) + auto-scaling Node.js pods</li>
+                <li><b>कैश · Cache:</b> Redis (दाम बोर्ड, बोलियां · price boards, bids) - <1ms reads</li>
+                <li><b>क्यू · Queue:</b> BullMQ (फोटो, हैश, WhatsApp अधिसूचनाएं · photos, hashing, notifications)</li>
+                <li><b>CDN:</b> CloudFlare (स्टैटिक एसेट्स · static assets + edge caching)</li>
+                <li><b>निगरानी · Monitoring:</b> Prometheus + Grafana dashboards</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Integration Points -->
+        <div class="card" style="margin-top:24px">
+          <h3>🔗 नियामक एकीकरण · Regulatory Integrations</h3>
+          <div class="grid g2" style="margin-top:16px;gap:20px">
+            <div class="card flat">
+              <h4>CPCB EPR पोर्टल · CPCB EPR Portal</h4>
+              <p class="small muted">Schedule-I वेस्ट कोड (ITEW1-ITEW21) के साथ CPCB-कम्पलायंट CSV एक्सपोर्ट, मास बैलेंस सत्यापन, और Form 6 हैज़र्डस वेस्ट ट्रांसपोर्ट मेनिफेस्ट। · CPCB-compliant CSV export with Schedule-I waste codes (ITEW1-ITEW21), mass balance verification, and Form 6 hazardous waste transport manifests.</p>
+            </div>
+            <div class="card flat">
+              <h4>GST / RCM · GST Compliance</h4>
+              <p class="small muted">रिवर्स चार्ज मेकेनिज्म (RCM): रजिस्टर्ड रिसाइकलर GST सीधे सरकार को देता है। ₹40 लाख से कम वार्षिक टर्नओवर वाले कबाड़ीवाले GST पंजीकरण से मुक्त हैं (Section 22/24)। · Reverse Charge Mechanism (RCM): registered recycler pays 18% GST directly to government. Kabadiwalas with annual turnover under ₹40 Lakhs are exempt from GST registration (Section 22/24).</p>
+            </div>
+            <div class="card flat">
+              <h4>e-Shram / PM SVANidhi · Social Welfare</h4>
+              <p class="small muted">e-Shram UAN लिंकिंग, Earnings Passport QR कोड बैंकों के लिए, PM SVANidhi माइक्रो-क्रेडिट इंटीग्रेशन। · e-Shram UAN linking, Earnings Passport QR code for banks, PM SVANidhi micro-credit integration.</p>
+            </div>
+            <div class="card flat">
+              <h4>DPDP Act 2023 · Data Protection</h4>
+              <p class="small muted">सहमति-प्रथम ऑनबोर्डिंग, डेटा डाउनलोड और डिलीशन अधिकार, शून्य बायोमेट्रिक स्टोरेज, QR पासपोर्ट पर मास्क्ड PII। · Consent-first onboarding, data download & deletion rights, zero biometric storage, masked PII on QR passports.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unit Economics -->
+        <div class="card" style="margin-top:24px;background:var(--cream)">
+          <h3>💰 यूनिट इकोनॉमिक्स और बिज़नेस मॉडल · Unit Economics & Business Model</h3>
+          <div class="grid g2" style="margin-top:16px;gap:20px">
+            <div>
+              <h4>राजस्व स्रोत · Revenue Sources</h4>
+              <table class="table small">
+                <thead><tr><th>स्रोत · Source</th><th>विवरण · Detail</th></tr></thead>
+                <tbody>
+                  <tr><td><b>रिसाइकलर SaaS शुल्क · Recycler SaaS fee</b></td><td>1.5% सुविधा शुल्क प्रति सत्यापित मेट्रिक टन · 1.5% facilitation fee per verified metric ton. CPCB non-compliance penalty: ₹5,000/ton - our fee is negligible.</td></tr>
+                  <tr><td><b>EPR डॉक्यूमेंटेशन · EPR Documentation</b></td><td>ऑटोमैटिक CPCB-कम्पलायंट CSV और Form 6 जनरेशन · Automated CPCB-compliant CSV and Form 6 generation.</td></tr>
+                  <tr><td><b>कबाड़ीवालों के लिए · For kabadiwalas</b></td><td>₹0 - हमेशा मुफ्त · ₹0 - always free. Zero commission maximizes rapid organic adoption.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div>
+              <h4>प्रति लेनदेन लागत · Cost per Transaction</h4>
+              <table class="table small">
+                <thead><tr><th>आइटम · Item</th><th>लागत · Cost</th></tr></thead>
+                <tbody>
+                  <tr><td>SMS OTP (MSG91)</td><td>~₹0.20/OTP</td></tr>
+                  <tr><td>IVR कॉल (Exotel) · IVR call</td><td>~₹1.50/minute</td></tr>
+                  <tr><td>WhatsApp Business API</td><td>~₹0.50/conversation</td></tr>
+                  <tr><td>क्लाउड इंफ्रा (GKE) · Cloud infra</td><td>~₹0.05/transaction</td></tr>
+                  <tr><td><b>कुल · Total</b></td><td><b>~₹2.25/transaction</b></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div style="margin-top:16px;padding:12px;background:#fff;border-radius:8px">
+            <h4>90-दिन पायलट योजना · 90-Day Pilot Plan</h4>
+            <div class="grid g3" style="margin-top:8px">
+              <div class="small"><b>चरण 1 (दिन 1-30) · Phase 1:</b> एक नगर निगम वार्ड में 50 कबाड़ीवालों और 3 CPCB रिसाइकलरों के साथ पायलट। · Ward-level pilot with 50 kabadiwalas and 3 CPCB recyclers in one Municipal Corporation ward.</div>
+              <div class="small"><b>चरण 2 (दिन 31-60) · Phase 2:</b> 10 BLE डिजिटल स्केल वितरित। IVR/WhatsApp हिंदी/भोजपुरी में लॉन्च। · Distribute 10 BLE digital scales. Launch IVR/WhatsApp in Hindi/Bhojpuri.</div>
+              <div class="small"><b>चरण 3 (दिन 61-90) · Phase 3:</b> पहला मास-बैलेंस्ड ट्रांज़ैक्शन लॉग SPCB को भेजें। EPR क्रेडिट जारी करने का सत्यापन। · Export first mass-balanced transaction log to SPCB. Validate EPR credit issuance.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Threat Model -->
+        <div class="card" style="margin-top:24px">
+          <h3>🛡️ थ्रेट मॉडल और सुरक्षा · Threat Model & Defenses</h3>
+          <table class="table small">
+            <thead><tr><th>खतरा · Threat</th><th>जोखिम · Risk</th><th>बचाव · Defense</th></tr></thead>
+            <tbody>
+              <tr><td><b>स्टॉक फोटो हमला · Stock Photo Attack</b></td><td>डाउनलोड की गई फोटो अपलोड करना · Uploading downloaded photos</td><td>EXIF टाइमस्टैम्प सत्यापन + पर्सेप्चुअल हैश डुप्लिकेट डिटेक्शन + कैमरा-ओनली कैप्चर · EXIF timestamp verification + perceptual hash duplicate detection + camera-only capture</td></tr>
+              <tr><td><b>वज़न धोखाधड़ी · Weight Fraud</b></td><td>फर्ज़ी वज़न दर्ज करना · Declaring false weights</td><td>ड्यूअल-पार्टी हैंडशेक: ±5% टॉलरेंस बैंड + ऑटो-डिस्प्यूट + कैलिब्रेटेड स्केल · Dual-party handshake: ±5% tolerance band + auto-dispute + calibrated scale</td></tr>
+              <tr><td><b>GPS स्पूफिंग · GPS Spoofing</b></td><td>फर्ज़ी स्थान · Fake location</td><td>सेल्युलर टावर ट्रायंगुलेशन + 100m जियो-फेंस मैचिंग · Cellular triangulation + 100m geo-fence matching at handover</td></tr>
+              <tr><td><b>सिबिल अटैक · Sybil (Fake Accounts)</b></td><td>बोगस अकाउंट बनाना · Creating phantom accounts</td><td>मोबाइल OTP + e-Shram/आधार सत्यापन + CPCB रजिस्ट्रेशन · Mobile OTP + e-Shram/Aadhaar verification + CPCB registration for buyers</td></tr>
+              <tr><td><b>हैश चेन हमला · Hash Chain Attack</b></td><td>इतिहास को बदलना · Rewriting history</td><td>सर्वर-साइड Ed25519 डिजिटल सिग्नेचर + डेली Merkle root एंकरिंग · Server-side Ed25519 signing + daily Merkle root anchoring to public timestamping service</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script src="js/sha256.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/common.js" data-root=""></script>
+  <script src="js/guide.js"></script>
+  <script>
+    (function () {
+      TK.publicLayout('architecture.html');
+    })();
+  </script>
+</body>
+</html>

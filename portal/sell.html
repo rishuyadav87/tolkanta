@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('tk_theme');
+        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch(e) {}
+    })();
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sell scrap · TolKanta</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0b2b26">
+  <meta name="description" content="TolKanta portal: Sell scrap">
+  <meta name="theme-color" content="#0B3D3A">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Mukta:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/portal.css">
+  <link rel="stylesheet" href="../vendor/leaflet/leaflet.css">
+</head>
+<body>
+  <main id="main">
+    <div class="wizard-steps" id="steps"></div>
+    <div id="wizErr"></div>
+    <!-- Step 1: photo + category -->
+    <section id="s1" class="grid g2" style="align-items:start">
+      <div>
+        <label class="dropzone" id="drop" for="photoInput">
+          <input type="file" id="photoInput" accept="image/*" capture="environment" class="sr-only">
+          <div id="dropText"><div style="font-size:42px">📷</div><h3 style="margin-top:8px">फोटो लें या अपलोड करें</h3><p class="muted small">Take a photo of the lot, or drag an image here. On a phone this opens the camera.</p></div>
+          <img id="preview" alt="" class="hidden">
+          <div id="scan" class="scanline hidden"></div>
+          <span id="aiTag" class="ai-tag hidden"></span>
+        </label>
+        <p class="tiny muted" style="margin-top:8px">The photo is analysed on this device by a small AI model (TensorFlow.js). It only suggests; you decide.</p>
+      </div>
+      <div class="card">
+        <div class="row between"><h3 style="margin:0">क्या बेचना है? · What are you selling?</h3><span id="listen1"></span></div>
+        <p class="muted small" id="aiMsg">Choose the material. If you add a photo, the AI will suggest one.</p>
+        <div class="chips" id="matChips"></div>
+        <div id="hazardBox" style="margin-top:14px"></div>
+        <div style="margin-top:18px"><button class="btn btn-orange btn-block" id="toStep2" disabled>आगे · Next: weight</button></div>
+      </div>
+    </section>
+    <!-- Step 2: weight -->
+    <section id="s2" class="grid g2 hidden" style="align-items:start">
+      <div class="card">
+        <h3>वज़न · Weight on your kanta</h3>
+        <p class="muted small" id="unitHint"></p>
+        <div class="weight-box">
+          <button class="round-btn" id="minus" type="button" aria-label="Less">−</button>
+          <input class="input" id="weight" inputmode="decimal" placeholder="0" aria-label="Weight">
+          <button class="round-btn" id="plus" type="button" aria-label="More">+</button>
+          <button class="round-btn mic" id="mic" type="button" aria-label="Speak the weight" title="बोलकर बताएँ · Speak the weight"></button>
+        </div>
+        <p class="small muted" id="micMsg" style="margin-top:8px"></p>
+        <div class="row" style="margin-top:16px"><button class="btn btn-ghost" id="back1">← Back</button><button class="btn btn-orange" id="toStep3" disabled>सबसे अच्छा दाम देखें · Get best price</button></div>
+      </div>
+      <div class="estimate"><div class="small" style="opacity:.8">अनुमानित कीमत · Estimate at today's board rate</div><div class="v" id="estimate">₹0</div><div class="small" style="opacity:.8" id="estRate"></div></div>
+    </section>
+    <!-- Step 3: quote -->
+    <section id="s3" class="hidden"><div id="quote"></div></section>
+    <!-- Step 4: recyclers -->
+    <section id="s4" class="hidden">
+      <div class="grid g2" style="align-items:start">
+        <div><div class="map" id="map"></div><div class="row" style="margin-top:10px"><button class="btn btn-ghost btn-sm" id="myLoc">📍 Use my location</button><span class="tiny muted" id="locMsg"></span></div></div>
+        <div><div class="chips" id="sortChips" style="margin-bottom:12px"></div><div id="recList" class="stack"></div></div>
+      </div>
+    </section>
+    <!-- Step 5: book -->
+    <section id="s5" class="hidden"><div id="book"></div></section>
+  </main>
+  <script src="../vendor/leaflet/leaflet.js"></script>
+  <script src="../js/sha256.js"></script>
+  <script src="../js/db.js"></script>
+  <script src="../js/common.js" data-root="../"></script>
+  <script src="../js/guide.js"></script>
+  <script src="../js/pages/sell.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('tk_theme');
+        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch(e) {}
+    })();
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WhatsApp bot demo · TolKanta</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0b2b26">
+  <meta name="description" content="Simulator of the TolKanta WhatsApp bot.">
+  <meta name="theme-color" content="#0B3D3A">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Mukta:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="main">
+    <section class="page-head"><div class="container">
+      <span class="eyebrow" style="color:var(--saffron)">Channel 2 · WhatsApp</span>
+      <h1>WhatsApp बॉट · WhatsApp bot demo</h1>
+      <p>Kabadiwalas already live on WhatsApp. Send a material name to get today's rate, the best authorised bid and a safety tip. Type "recycler" to get the nearest buyers.</p>
+    </div></section>
+    <section class="section"><div class="container">
+      <div class="chat">
+        <div class="chat-head"><span class="brand-mark" style="background:#fff;color:var(--green)" id="botIcon"></span><div><b>TolKanta बॉट</b><div class="tiny" style="opacity:.8" id="botState">WhatsApp simulator · business account</div></div></div>
+        <div class="chat-body" id="chatBody" aria-live="polite"></div>
+        <div class="quick" id="quick"></div>
+        <form class="chat-foot" id="chatForm"><input id="chatText" placeholder="सामान का नाम लिखें… (e.g. तार, battery)" aria-label="Message"><button type="submit" aria-label="Send" id="sendBtn"></button></form>
+      </div>
+    </div></section>
+  </main>
+  <script src="js/sha256.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/common.js" data-root=""></script>
+  <script src="js/guide.js"></script>
+  <script src="js/pages/whatsapp.js"></script>
+</body>
+</html>

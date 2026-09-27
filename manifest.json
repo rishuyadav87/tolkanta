@@ -1,0 +1,26 @@
+{
+  "name": "TolKanta · तोलकांटा",
+  "short_name": "TolKanta",
+  "description": "Fair weight, fair price for India's e-waste · सही तौल, सही दाम",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0b2b26",
+  "theme_color": "#0b2b26",
+  "icons": [
+    {
+      "src": "/assets/img/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/assets/img/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["utilities", "business"],
+  "lang": "en",
+  "dir": "ltr",
+  "orientation": "portrait-primary"
+}

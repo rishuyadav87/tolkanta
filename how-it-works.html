@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('tk_theme');
+        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch(e) {}
+    })();
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How it works · TolKanta</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0b2b26">
+  <meta name="description" content="How TolKanta moves e-waste from the kabadi lane to authorised recyclers.">
+  <meta name="theme-color" content="#0B3D3A">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Mukta:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="main">
+    <section class="page-head"><div class="container">
+      <span class="eyebrow" style="color:var(--saffron)">How it works</span>
+      <h1>From the kabadi lane to authorised recycling</h1>
+      <p>A walk through one lot of scrap: who uses which channel, what the platform checks, and what each person gets out of it.</p>
+    </div></section>
+
+    <section class="section"><div class="container">
+      <div class="grid g2" style="align-items:start">
+        <div>
+          <span class="eyebrow">Step 1 · Reach</span>
+          <h2>Four channels, one price</h2>
+          <p>The same rules-based price engine feeds every channel, so a picker without a smartphone hears the same fair rate as a kabadiwala with one.</p>
+          <ul class="muted" style="line-height:1.9">
+            <li><b>IVR line</b> for waste pickers on feature phones: press a number, hear the rate in Hindi.</li>
+            <li><b>Printed price boards</b> at scrap markets, refreshed from the same engine.</li>
+            <li><b>WhatsApp bot</b>: send a material name, get the rate and the nearest recyclers.</li>
+            <li><b>This website</b> for kabadiwalas, recyclers, ULBs and brands.</li>
+          </ul>
+        </div>
+        <div class="card"><h3>Price engine rules</h3>
+          <table class="table"><tbody>
+            <tr><td>Board rate</td><td class="muted">Set by the admin, or recomputed as the median of verified recycler bids</td></tr>
+            <tr><td>Quote</td><td class="muted">Best verified bid × weight, shown next to the typical local rate</td></tr>
+            <tr><td>Who can bid</td><td class="muted">Only recyclers whose CPCB authorisation the admin has verified</td></tr>
+            <tr><td>Why no AI pricing</td><td class="muted">Rules first; a model only once real field data justifies it</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+    </div></section>
+
+    <section class="section band cream"><div class="container">
+      <div class="section-head"><span class="eyebrow">Steps 2–5 · One lot, end to end</span><h2>What happens to a kilo of circuit boards</h2></div>
+      <div class="grid g2">
+        <div class="card"><div class="card-icon orange"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg></div><h3>2. Capture & classify</h3><p class="muted">The kabadiwala photographs the lot. A small TensorFlow.js model runs in the browser and suggests the category. It only suggests: he confirms, or picks from the list. He enters the weight from his own kanta, or says it aloud in Hindi.</p></div>
+        <div class="card"><div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div><h3>3. Value & match</h3><p class="muted">He sees the best authorised bid, the typical local rate and the difference in rupees. A live map ranks CPCB-authorised recyclers by rate, distance and pickup slot. He books a pickup, with cash as the default.</p></div>
+        <div class="card"><div class="card-icon navy"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div><h3>4. Verified handover</h3><p class="muted">At pickup, the photo, GPS, time and weight are hashed with SHA-256 and linked to the previous record, making the ledger tamper-evident. The recycler weighs the lot and counter-confirms. A difference above 5% goes to the admin as a dispute.</p></div>
+        <div class="card"><div class="card-icon red"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></div><h3>5. Record & report</h3><p class="muted">The sale is written into the kabadiwala's ledger and feeds his Earnings Passport. Recyclers export EPR-ready records, and ULBs see a ward-wise registry of workers and tonnes diverted.</p></div>
+      </div>
+    </div></section>
+
+    <section class="section"><div class="container">
+      <div class="section-head"><span class="eyebrow">Trust & inclusion</span><h2>Designed for low-literacy users and low-end phones</h2></div>
+      <div class="grid g3">
+        <div class="card flat"><h3>Works on weak networks</h3><p class="muted small">Pages are light, data is kept on the device, and the IVR needs no data at all.</p></div>
+        <div class="card flat"><h3>Every AI step has a fallback</h3><p class="muted small">If the model can't load, the kabadiwala picks the material from a list. Nothing depends on AI.</p></div>
+        <div class="card flat"><h3>Hazard guidance</h3><p class="muted small">CRT, battery and circuit-board lots show picture and audio safety steps before pickup.</p></div>
+        <div class="card flat"><h3>Audio everywhere</h3><p class="muted small">सुनें buttons read each page aloud in Hindi. Weight can be spoken instead of typed.</p></div>
+        <div class="card flat"><h3>Cash-first</h3><p class="muted small">Cash is the default payment. UPI and AePS are optional, and the ledger records all of them.</p></div>
+        <div class="card flat"><h3>DPDP Act 2023</h3><p class="muted small">Consent first, optional e-Shram and Aadhaar link, minimal retention, and no personal data on public pages.</p></div>
+      </div>
+    </div></section>
+
+    <section class="section band dark"><div class="container">
+      <div class="section-head"><span class="eyebrow" style="color:var(--saffron)">Technology</span><h2 style="color:#fff">What this website is built with</h2></div>
+      <div class="grid g4">
+        <div><h3 style="color:#fff">HTML · CSS · JavaScript</h3><p class="muted small">A plain multi-page website with no framework and no build step. It deploys to any static host.</p></div>
+        <div><h3 style="color:#fff">SHA-256 hash chain</h3><p class="muted small">Handover records are hashed in the browser and linked, so any edit is detectable.</p></div>
+        <div><h3 style="color:#fff">Leaflet + OpenStreetMap</h3><p class="muted small">Live map of authorised recyclers with distances.</p></div>
+        <div><h3 style="color:#fff">TensorFlow.js · Web Speech</h3><p class="muted small">An on-device image suggestion, Hindi text-to-speech and voice input.</p></div>
+      </div>
+      <p class="muted small" style="margin-top:22px">Production roadmap: PostgreSQL + PostGIS, a Flutter app for low-end Android, WhatsApp Business API, Exotel IVR, e-Shram and UPI/AePS integrations, and Bhashini for more languages.</p>
+    </div></section>
+  </main>
+  <script src="js/sha256.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/common.js" data-root=""></script>
+  <script src="js/guide.js"></script>
+  <script src="js/pages/plain.js"></script>
+</body>
+</html>
