@@ -25,7 +25,13 @@
     try { var raw = localStorage.getItem(KEY); return raw ? JSON.parse(raw) : null; } catch (e) { return null; }
   }
   function write(db) {
-    try { localStorage.setItem(KEY, JSON.stringify(db)); }
+    try { 
+      localStorage.setItem(KEY, JSON.stringify(db)); 
+      if (window.fetch) {
+        fetch('/api/sync', { method: 'POST', body: JSON.stringify({ version: TK._dbVer || 0, db: db }) })
+          .then(function(r) { return r.json(); }).then(function(res) { TK._dbVer = res.version; }).catch(function(){});
+      }
+    }
     catch (e) { throw Err('Browser storage is full or blocked. Use Admin → Reset demo, or a normal (non-private) window.', 507); }
   }
   function load() {
@@ -776,5 +782,25 @@
       byMaterial: db.materials.map(function (m) { var ps = conf.filter(function (p) { return p.material.id === m.id; }); return { material: m, qty: r2(ps.reduce(function (a, p) { return a + p.handover.receivedWeightKg; }, 0)) }; }) };
   };
 
+    TK._dbVer = 0;
+  function syncPull() {
+    if (!window.fetch) return;
+    fetch('/api/sync', { method: 'POST', body: JSON.stringify({ version: TK._dbVer }) })
+      .then(function(r) { return r.json(); })
+      .then(function(res) {
+        if (res.version && res.version > TK._dbVer) {
+          TK._dbVer = res.version;
+          if (res.db) {
+            localStorage.setItem(KEY, JSON.stringify(res.db));
+            if (typeof render === 'function') render();
+            else if (window.location.pathname.indexOf('.html') > 0) window.location.reload();
+          }
+        }
+      }).catch(function(){});
+  }
+  if (window.fetch) setInterval(syncPull, 2000);
+
   api.resetDemo = function () { try { localStorage.removeItem(KEY); } catch (e) { /* ignore */ } api.logout(); load(); };
 })();
+
+

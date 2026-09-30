@@ -8,7 +8,22 @@ const chat = require('./api/chat.js');
 const ROOT = __dirname, PORT = Number(process.env.PORT) || 3000;
 const TYPES = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.ico': 'image/x-icon', '.md': 'text/plain; charset=utf-8' };
 
+let globalDb = null, dbVersion = 0;
 http.createServer((req, res) => {
+  const url = new URL(req.url, 'http://localhost');
+  if (url.pathname === '/api/sync') {
+    let raw = '';
+    req.on('data', c => { raw += c; if (raw.length > 5000000) req.destroy(); });
+    req.on('end', () => {
+      try {
+        const body = raw ? JSON.parse(raw) : {};
+        if (body.db) { globalDb = body.db; dbVersion = Date.now(); res.end(JSON.stringify({ version: dbVersion })); }
+        else if (body.version < dbVersion) { res.end(JSON.stringify({ version: dbVersion, db: globalDb })); }
+        else { res.end(JSON.stringify({ version: dbVersion })); }
+      } catch (e) { res.end(JSON.stringify({ error: e.message })); }
+    });
+    return;
+  }
   const url = new URL(req.url, 'http://localhost');
   if (url.pathname === '/api/chat') {
     let raw = '';
@@ -26,3 +41,4 @@ http.createServer((req, res) => {
     res.end(buf);
   });
 }).listen(PORT, () => console.log('TolKanta running at http://localhost:' + PORT + (process.env.GEMINI_API_KEY ? '  (AI assistant ON)' : '  (AI assistant OFF: set GEMINI_API_KEY)')));
+
